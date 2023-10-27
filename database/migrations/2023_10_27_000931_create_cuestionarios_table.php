@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categoria', function (Blueprint $table) {
+        Schema::create('cuestionarios', function (Blueprint $table) {
             $table->id();
-            $table->string("categoria_nombre");
-            $table->char("categoria_descripcion", 2);
-            $table->unsignedBigInteger("fkid_cuestionario");
+            $table->string("cuestionario_nombre");
+            $table->string("cuestionario_autor");
+            $table->char("cuestionario_tipo", 2);
+            $table->estado("cuestionario_estado", 1);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categoria');
+        Schema::dropIfExists('cuestionarios');
     }
 };
