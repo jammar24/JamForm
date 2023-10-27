@@ -17,7 +17,6 @@ const form = reactive({
 
 <template>
     <div class="flex flex-col items-center justify-center w-full h-full">
-        <pre>{{ $page?.props?.cuestionario?.cuestionario_nombre }}</pre>
         <form @submit.prevent="submit" class="w-full max-w-sm bg-white shadow-md rounded-md p-6">
             <h1 class="text-2xl font-semibold mb-4">Editar Cuestionario</h1>
             <input
@@ -46,6 +45,23 @@ const form = reactive({
                 <option value="FI">Fisica</option>
             </select>
 
+            <button type="submit" class="w-full bg-purple-700 text-white font-semibold py-2 px-4 rounded-md">
+                Guardar Cuestionario
+            </button>
+        </form>
+    </div>
+    <div class="p-10"></div>
+
+    <div class="flex flex-col items-center justify-center w-full h-full">
+        <form @submit.prevent="submit" class="w-full max-w-sm bg-white shadow-md rounded-md p-6">
+            <h1 class="text-2xl font-semibold mb-4">Categoría</h1>
+            <input
+                id="cuestionario_nombre"
+                v-model="form.cuestionario_nombre"
+                type="text"
+                class="mb-4 w-full bg-gray-100 border-2 border-gray-200 rounded-md"
+                placeholder="Nombre de la Categoría"
+            />
             <button type="submit" class="w-full bg-purple-700 text-white font-semibold py-2 px-4 rounded-md">
                 Guardar Cuestionario
             </button>
