@@ -20,9 +20,8 @@ function deleteCuestionario(id) {
 
 <template>
     <AppLayout title="Dashboard">
-
+        <Link :href="route('cuestionario.create')" class="text-white bg-purple-700 rounded-md m-15">Crear Cuestionario</Link>
         <div class="bg-white h-[700px]">
-
         <table class="min-w-full border divide-y divide-gray-200">
             <thead>
             <tr>

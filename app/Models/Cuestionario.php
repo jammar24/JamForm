@@ -30,4 +30,16 @@ class Cuestionario extends Model
         }
         return $cuestionarios;
     }
+
+    public static function getDataById($id)
+    {
+        $cuestionario = Cuestionario::find($id);
+        $categorias = Categoria::where('fkid_cuestionario', $cuestionario->id)->get();
+        foreach ($categorias as &$categoria) {
+            $preguntas = Pregunta::where('fkid_categoria', $categoria->id)->get();
+            $categoria['preguntas'] = $preguntas;
+        }
+        $cuestionario['categorias'] = $categorias;
+        return $cuestionario;
+    }
 }

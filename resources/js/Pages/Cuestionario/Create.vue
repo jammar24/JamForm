@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from 'vue'
-import { router } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 
 const form = reactive({
   cuestionario_nombre: '',
@@ -68,6 +68,7 @@ function agregarPregunta(categoria) {
 }
 </script>
 <template>
+    <Link :href="route('cuestionario.index')" class="text-white bg-purple-700 rounded-md m-15">Regresar Cuestionario</Link>
   <div class="flex flex-col items-center justify-center w-full h-full">
     <form
       @submit.prevent="submit"

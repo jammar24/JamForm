@@ -75,7 +75,7 @@ class CuestionarioController extends Controller
     public function edit(string $id)
     {
         return Inertia::render('Cuestionario/Edit', [
-            'cuestionario' => Cuestionario::getData(),
+            'cuestionario' => Cuestionario::getDataById($id),
         ]);
     }
 
