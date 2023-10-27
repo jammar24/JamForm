@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("cuestionario_nombre");
             $table->string("cuestionario_autor");
             $table->char("cuestionario_tipo", 2);
-            $table->estado("cuestionario_estado", 1);
+            $table->char("cuestionario_estado", 1);
             $table->timestamps();
         });
     }
