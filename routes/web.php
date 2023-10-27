@@ -34,3 +34,4 @@ Route::middleware([
 
     Route::resource('/cuestionario', CuestionarioController::class)->names('cuestionario');
 });
+

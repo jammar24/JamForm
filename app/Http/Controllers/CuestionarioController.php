@@ -23,15 +23,14 @@ class CuestionarioController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Cuestionario/Create', [
-        ]);
+        return Inertia::render('Cuestionario/Create', []);
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    { 
         Cuestionario::create($request->all());
 
         return redirect()->route('cuestionario.index');
@@ -67,7 +66,13 @@ class CuestionarioController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
+    
     {
-        //
+        $cuestionario = Cuestionario::find($id);
+
+        if ($cuestionario) {
+            $cuestionario->delete($id);
+            return redirect()->route('cuestionario.index');
+        }
     }
 }
