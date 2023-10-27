@@ -2,6 +2,7 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 import { Link } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3'
 
 defineProps({
     cuestionarios: {
@@ -9,6 +10,12 @@ defineProps({
         required: true,
     },
 });
+
+function deleteCuestionario(id) {
+    if (confirm('¿Estás seguro de que quieres eliminar este cuestionario?')) {
+        router.delete(route('cuestionario.destroy', id))
+    }
+}
 </script>
 
 <template>
@@ -59,10 +66,10 @@ defineProps({
                             <Link :href="route('cuestionario.edit', item.id)"
                                          class="mr-2 inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                                 Editar
-                            </Link> 
-                            
-                            <button @click="deletecuestionario(item.id)"
-                               
+                            </Link>
+
+                            <button @click="deleteCuestionario(item.id)"
+
 
                                   class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-900 focus:outline-none focus:border-green-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                             Eliminar</button>
