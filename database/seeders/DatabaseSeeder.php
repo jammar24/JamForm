@@ -30,3 +30,4 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
+// generamos un registro para hacer las pruebas de la aplicacion o usuarios por defecto

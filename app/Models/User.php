@@ -23,6 +23,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // $fillable se una para especificar atributos 
     protected $fillable = [
         'name',
         'email',
@@ -34,6 +35,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    //oculta datos sencibles 
     protected $hidden = [
         'password',
         'remember_token',
@@ -46,6 +48,7 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+    //  es un modificador de acceso en POO(se usa un POO Para controlar la visibilidad de propiedades y métodos en una clase.)
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//use es lo que usa php para  mandar a ejecutar una accion dentro de un componete 
 use App\Models\Categoria;
 use App\Models\Cuestionario;
 use App\Models\Pregunta;
@@ -17,7 +17,7 @@ class CuestionarioController extends Controller
     {
         return Inertia::render('Cuestionario/Index', [
             'cuestionarios' => Cuestionario::all(),
-        ]);
+        ]);//visulizamos nuesta aplicaio
     }
 
     /**
@@ -55,7 +55,7 @@ class CuestionarioController extends Controller
                 ];
                 $resultPreg = Pregunta::create($formattedPregunta);
             }
-        }
+        }/// show muestra todas la informacion de una accion en este caso el cuestionario
 
 
         return redirect()->route('cuestionario.index');
@@ -77,7 +77,7 @@ class CuestionarioController extends Controller
         return Inertia::render('Cuestionario/Edit', [
             'cuestionario' => Cuestionario::getDataById($id),
         ]);
-    }
+    }//update del cuestinario
 
     /**
      * Update the specified resource in storage.
@@ -98,6 +98,6 @@ class CuestionarioController extends Controller
         if ($cuestionario) {
             $cuestionario->delete($id);
             return redirect()->route('cuestionario.index');
-        }
+        }//funcion para eliminar  los cuestianarios 
     }
 }

@@ -16,7 +16,7 @@ class Cuestionario extends Model
         "cuestionario_estado",
     ];
 
-
+//Lista de cuestionaris con sus categorias 
     public static function getData()
     {
         $cuestionarios = Cuestionario::all();
@@ -30,7 +30,7 @@ class Cuestionario extends Model
         }
         return $cuestionarios;
     }
-
+//Obtenemos un cuestionario por id
     public static function getDataById($id)
     {
         $cuestionario = Cuestionario::find($id);
