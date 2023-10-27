@@ -15,4 +15,19 @@ class Cuestionario extends Model
         "cuestionario_tipo",
         "cuestionario_estado",
     ];
+
+
+    public static function getData()
+    {
+        $cuestionarios = Cuestionario::all();
+        foreach ($cuestionarios as &$cuestionario) {
+            $categorias = Categoria::where('fkid_cuestionario', $cuestionario->id)->get();
+            foreach ($categorias as &$categoria) {
+                $preguntas = Pregunta::where('fkid_categoria', $categoria->id)->get();
+                $categoria['preguntas'] = $preguntas;
+            }
+            $cuestionario['categorias'] = $categorias;
+        }
+        return $cuestionarios;
+    }
 }

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
             $table->string("categoria_nombre");
-            $table->char("categoria_descripcion", 2);
+            $table->string("categoria_descripcion")->nullable();
             $table->unsignedBigInteger("fkid_cuestionario");
             $table->timestamps();
 
-            $table->foreign('fkid_cuestionario')->references('id')->on('cuestionarios');
+            $table->foreign('fkid_cuestionario')->references('id')->on('cuestionarios')->onDelete('cascade');
         });
     }
 

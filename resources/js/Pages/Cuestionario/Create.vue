@@ -50,31 +50,16 @@ function agregarCategoria() {
   })
 }
 
-function agregarOpcion() {
-  //cambiar categoria_activa a false la que estaba activa
-  const categoriaActiva = form.categorias.find(
-    (categoria) => categoria.categoria_activa,
-  )
-  console.log('categoriaActiva', categoriaActiva)
-  const preguntaActiva = categoriaActiva.preguntas.find(
-    (pregunta) => pregunta.pregunta_activa,
-  )
-  console.log('preguntaActiva', preguntaActiva)
-  preguntaActiva.opciones.push({
+function agregarOpcion(pregunta) {
+    pregunta.opciones.push({
     opcion_nombre: 'Opcion 1',
     opcion_correcta: true,
   })
 }
 
-function agregarPregunta() {
-    //cambiar categoria_activa a false la que estaba activa
-    const categoriaActiva = form.categorias.find(
-        (categoria) => categoria.categoria_activa,
-    )
-    const preguntaActiva = categoriaActiva.preguntas.find(
-        (pregunta) => pregunta.pregunta_activa,
-    )
-    categoriaActiva.preguntas.push({
+function agregarPregunta(categoria) {
+
+    categoria.preguntas.push({
         pregunta_nombre: 'Mi primera pregunta',
         pregunta_activa: true,
         pregunta_tipo: 'TE',
@@ -157,7 +142,7 @@ function agregarPregunta() {
                         <h1 class="text-2xl font-semibold mb-4">
                         {{ pregunta?.pregunta_nombre ?? 'Nombre de la Pregunta' }}
                         </h1>
-                        <button type="button" class="w-full bg-purple-700 text-white font-semibold py-2 px-4 rounded-md" @click="agregarPregunta">
+                        <button type="button" class="w-full bg-purple-700 text-white font-semibold py-2 px-4 rounded-md" @click="agregarPregunta(categoria)">
                         Agregar Pregunta
                         </button>
                         <input

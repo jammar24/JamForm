@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Cuestionario;
+use App\Models\Pregunta;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -30,8 +32,31 @@ class CuestionarioController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { 
-        Cuestionario::create($request->all());
+    {
+        $resultCues = Cuestionario::create($request->all());
+        $categorias = $request->input('categorias');
+        $formattedCategories = [];
+        $formattedPreguntas = [];
+        foreach ($categorias as &$categoria) {
+            $formattedCategoria = [
+                'categoria_nombre' => $categoria['categoria_nombre'] ?? '',
+                'categoria_descripcion' => $categoria['categoria_descripcion'] ?? '',
+                'fkid_cuestionario' => $resultCues->id,
+            ];
+            $categoria['fkid_cuestionario'] = $resultCues->id;
+            $formattedCategories[] = $formattedCategoria;
+            $resultCat = Categoria::create($formattedCategoria);
+            $preguntas = $categoria['preguntas'];
+            foreach ($preguntas as &$pregunta) {
+                $formattedPregunta = [
+                    'pregunta_nombre' => $pregunta['pregunta_nombre'] ?? '',
+                    'pregunta_tipo' => $pregunta['pregunta_tipo'] ?? '',
+                    'fkid_categoria' => $resultCat->id,
+                ];
+                $resultPreg = Pregunta::create($formattedPregunta);
+            }
+        }
+
 
         return redirect()->route('cuestionario.index');
     }
@@ -50,7 +75,7 @@ class CuestionarioController extends Controller
     public function edit(string $id)
     {
         return Inertia::render('Cuestionario/Edit', [
-            'cuestionario' => Cuestionario::find($id),
+            'cuestionario' => Cuestionario::getData(),
         ]);
     }
 
@@ -66,7 +91,7 @@ class CuestionarioController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    
+
     {
         $cuestionario = Cuestionario::find($id);
 
